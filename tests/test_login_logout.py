@@ -1,20 +1,19 @@
 import re
 from playwright.sync_api import Page, expect
 
-
-def test_valid_login_and_logout(page: Page):
+def test_valid_login_and_logout(page: Page, menu):
     page.goto("/")
-
-    page.get_by_role("link", name="Log in").click()
+    menu.user_menu.goto_login()
     page.get_by_label("Email:").fill("user.shopper@yopmail.com")
     page.get_by_label("Password:").fill("user9900")
     page.get_by_role("button", name="Log in").click()
 
-    expect(page.get_by_role("link", name = "My account").first).to_be_visible()
-    expect(page.get_by_role("link", name = "Log out").first).to_be_visible()
+    expect(menu.user_menu.link_my_account).to_be_visible()
+    expect(menu.user_menu.link_logout).to_be_visible()
 
-    page.get_by_role("link", name = "Log out").click()
-    expect(page.get_by_role("link", name = "Log in")).to_be_visible()
+
+    menu.user_menu.goto_logout()
+    expect(menu.user_menu.link_login).to_be_visible()
     expect(page.locator(".ico-account", has_text="My account")).to_have_count(0)
 
 
