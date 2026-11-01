@@ -18,7 +18,7 @@ def get_base_url():
 def get_browser_context_options():
     return {
         "viewport": {
-            "width": os.getenv("VIEWPORT_WIDTH"),
-            "height": os.getenv("VIEWPORT_HEIGHT")
+            "width": int(os.getenv("VIEWPORT_WIDTH")),
+            "height": int(os.getenv("VIEWPORT_HEIGHT"))
         }
     }
