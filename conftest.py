@@ -14,6 +14,11 @@ from pages.my_account_customer_info_page import CustomerInfo
 from pages.register_page import RegisterPage
 # from utils.types import Page
 
+
+@pytest.fixture(scope="session")
+def browser_type(playwright):
+    return getattr(playwright, config.get_browser_type())
+
 @pytest.fixture(scope="session")
 def browser_type_launch_args():
     return config.get_browser_launch_options()
@@ -23,7 +28,18 @@ def base_url():
     return config.get_base_url()
 
 @pytest.fixture(scope="session")
-def browser_context_args(browser_context_args):
+def browser_context_args(browser_context_args, playwright):
+    mobile = config.get_mobile_device_type()
+    browser = config.get_browser_type()
+
+    is_device = playwright.devices.get(mobile, None)
+
+    if is_device and not browser == 'firefox':
+        return{
+            **browser_context_args,
+            **is_device
+        }
+
     return {
         **browser_context_args,
         "viewport": {

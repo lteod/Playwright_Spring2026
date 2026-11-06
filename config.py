@@ -10,6 +10,11 @@ def get_browser_launch_options():
         'headless': os.getenv('HEADLESS').upper() == 'TRUE'
     }
 
+def get_mobile_device_type():
+    return os.getenv('MOBILE')
+
+def get_browser_type():
+    return os.getenv('BROWSER').lower()
 
 def get_base_url():
     return os.getenv('BASE_URL').lower()
