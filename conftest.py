@@ -17,10 +17,19 @@ from pages.register_page import RegisterPage
 
 @pytest.fixture(scope="session")
 def browser_type(playwright):
+    if config.get_browser_type().lower() == 'brave':
+        return playwright.chromium
+
     return getattr(playwright, config.get_browser_type())
 
 @pytest.fixture(scope="session")
 def browser_type_launch_args():
+    if config.get_browser_type().lower() == 'brave':
+        return {
+            **config.get_browser_launch_options(),
+            "executable_path": ""
+        }
+
     return config.get_browser_launch_options()
 
 @pytest.fixture(scope="session")
