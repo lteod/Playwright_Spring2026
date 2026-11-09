@@ -27,7 +27,7 @@ def browser_type_launch_args():
     if config.get_browser_type().lower() == 'brave':
         return {
             **config.get_browser_launch_options(),
-            "executable_path": ""
+            "executable_path": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
         }
 
     return config.get_browser_launch_options()
