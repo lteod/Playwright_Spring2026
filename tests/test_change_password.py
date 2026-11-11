@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
-from fixtures.api_fixtures import api_register_user, api_auth
+from fixtures.api_fixtures import api_register_user
 
-def test_change_password_successfully(page: Page, api_register_user, api_auth):
+def test_change_password_successfully(page: Page, api_register_user):
     user_email = api_register_user['email']
     user_pswd = api_register_user['password']
 
@@ -33,3 +33,6 @@ def test_change_password_successfully(page: Page, api_register_user, api_auth):
 
     expect(page.get_by_role("link", name = "My account").first).to_be_visible()
     expect(page.get_by_role("link", name = "Log out").first).to_be_visible()
+
+
+    # pass

@@ -9,6 +9,7 @@ class RegisterUserData:
     last_name: str
     birth_date: datetime.date
     email: str
+    phone: str
     company: str
     password: str
     country: str
@@ -22,6 +23,7 @@ def generate_user_registration_data():
         last_name = f.last_name(),
         birth_date = f.date_of_birth(),
         email = f.free_email(),
+        phone = f.phone_number(),
         company = f.company(),
         password = f.password(),
         country = f.country()
@@ -34,17 +36,15 @@ class UserAddressData:
     city: str
     street: str
     zipcode: str
-    phone: str
 
 
 def generate_address_data():
-    f = Faker()
+    f = Faker("en_US")
 
     return UserAddressData(
         country = "United States of America",
         state = f.state(),
         city = f.city(),
         street = f.address(),
-        zipcode= f.postalcode(),
-        phone = f.phone_number()
+        zipcode= f.postalcode()
     )
