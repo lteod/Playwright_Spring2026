@@ -33,6 +33,3 @@ def test_change_password_successfully(page: Page, api_register_user):
 
     expect(page.get_by_role("link", name = "My account").first).to_be_visible()
     expect(page.get_by_role("link", name = "Log out").first).to_be_visible()
-
-
-    # pass

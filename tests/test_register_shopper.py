@@ -39,5 +39,3 @@ def test_register_shopper(page: Page, menu: Menu):
     expect(customer_info_page.fld_email).to_have_value(user.email)
     expect(customer_info_page.fld_company).to_have_value(user.company)
     expect(customer_info_page.chk_newsletter).not_to_be_checked()
-
-# pass

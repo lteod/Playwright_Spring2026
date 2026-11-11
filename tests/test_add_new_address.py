@@ -24,7 +24,3 @@ def test_add_new_first_address(api_auth: Page):
     expect(page.my_account.addresses_page.li_city_state_zip.last).to_contain_text(
         f"{address.city}, {address.state}, {address.zipcode}")
     expect(page.my_account.addresses_page.li_name.last).to_contain_text(f"{user.first_name} {user.last_name}")
-
-
-    # pass
-

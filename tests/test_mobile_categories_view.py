@@ -40,8 +40,3 @@ def test_categories_on_desktop(page: Page):
 
     header_menu.get_by_role('link', name='Computers').click()
     expect(page.get_by_role('heading', level=1)).to_have_text('Computers')
-
-
-
-    # pass
-

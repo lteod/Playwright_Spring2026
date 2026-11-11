@@ -14,6 +14,3 @@ def test_valid_login_and_logout(page: Page, menu):
     menu.user_menu.goto_logout()
     expect(menu.user_menu.link_login).to_be_visible()
     expect(page.locator(".ico-account", has_text="My account")).to_have_count(0)
-
-
-# pass
