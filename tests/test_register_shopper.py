@@ -4,7 +4,8 @@ from fixtures.menu import Menu
 from pages.my_account_customer_info_page import CustomerInfo
 from pages.register_page import RegisterPage
 from utils.helpers import generate_user_registration_data
-from playwright.sync_api import Page, expect
+from playwright.sync_api import expect
+from fixtures.extended_page import Page
 from playwright.sync_api import Playwright, sync_playwright, expect
 
 
@@ -38,10 +39,3 @@ def test_register_shopper(page: Page, menu: Menu):
     expect(customer_info_page.fld_email).to_have_value(user.email)
     expect(customer_info_page.fld_company).to_have_value(user.company)
     expect(customer_info_page.chk_newsletter).not_to_be_checked()
-
-# def test_user_registration_fails_with_mismatched_password():
-#     pass
-#
-# @pytest.mark.parametrize()
-# def test_user_registration_fails_with_missing_required_fields():
-#     pass

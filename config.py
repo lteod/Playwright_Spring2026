@@ -11,7 +11,10 @@ def get_browser_launch_options():
     }
 
 def get_mobile_device_type():
-    return os.getenv('MOBILE')
+    mobile = os.getenv('MOBILE', '').strip().lower()
+    if not mobile or mobile == 'none':
+        return None
+    return mobile
 
 def get_browser_type():
     return os.getenv('BROWSER').lower()

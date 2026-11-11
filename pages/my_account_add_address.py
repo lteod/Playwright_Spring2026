@@ -17,12 +17,13 @@ class AddAddressPage(BasePage):
         self.fld_phone_number = page.get_by_label("Phone number:")
         self.btn_save = page.get_by_role("button", name="Save")
 
-    def fill_address_details(self, first_name, last_name, email, city, street, zipcode, phone_number):
+    def fill_address_details(self, first_name, last_name, email, country, state, city, street, zipcode, phone_number):
+        self.page.wait_for_load_state("load")
         self.fld_first_name.fill(first_name)
         self.fld_last_name.fill(last_name)
         self.fld_email.fill(email)
-        self.page.get_by_label('Country:').select_option("237")
-        self.page.get_by_label("State / province:").select_option("1672")
+        self.page.get_by_label('Country:').select_option(country)
+        self.page.get_by_label("State / province:").select_option(state)
         self.fld_city.fill(city)
         self.fld_street.fill(street)
         self.fld_zipcode.fill(zipcode)

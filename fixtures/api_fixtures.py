@@ -4,6 +4,7 @@ import pytest
 from playwright.sync_api import APIRequestContext
 
 import config
+from fixtures.extended_page import Page
 from utils.helpers import generate_user_registration_data
 
 @pytest.fixture
@@ -28,7 +29,7 @@ def api_auth(playwright, browser):
     state = session.storage_state()
     context = browser.new_context(storage_state=state, base_url = config.get_base_url())
 
-    yield context.new_page()
+    yield Page(context.new_page())
 
     session.dispose()
     context.close()

@@ -1,4 +1,3 @@
-import re
 from playwright.sync_api import Page, expect
 
 def test_valid_login_and_logout(page: Page, menu):
@@ -15,8 +14,3 @@ def test_valid_login_and_logout(page: Page, menu):
     menu.user_menu.goto_logout()
     expect(menu.user_menu.link_login).to_be_visible()
     expect(page.locator(".ico-account", has_text="My account")).to_have_count(0)
-
-
-
-    # Expect a title "to contain" a substring.
-    # expect(page).to_have_title(re.compile("Playwright"))

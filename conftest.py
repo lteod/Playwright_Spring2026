@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-
 import pytest
-from playwright.sync_api import Page
+from playwright.sync_api import Page as PlaywrightPage, BrowserType
 
 import config
+from fixtures.extended_page import Page
 
 from fixtures.new_user import get_shopper
 from fixtures.menu import menu
@@ -57,27 +57,8 @@ def browser_context_args(browser_context_args, playwright):
         },
     }
 
-@dataclass
-class MyAccount:
-    customer_info_page: CustomerInfo
-    addresses: AddressesPage
-    add_address: AddAddressPage
-    # change_password_page: ChangePasswordPage
-    # orders_page: ChangePasswordPage
 
-
-@pytest.fixture(scope="function")
-def page(page: Page):
-    page.login_page = LoginPage(page)
-    page.register_page = RegisterPage(page)
-    # page.customer_info_page = CustomerInfo(page)
-
-    page.my_account = MyAccount(
-        CustomerInfo(page),
-        AddressesPage(page),
-        AddAddressPage(page)
-        # OrdersPAge(page),
-        # ChangePasswordPage(page)
-    )
-
-    return page
+@pytest.fixture
+def page(page: PlaywrightPage) -> Page:
+    """Returns a typed Page wrapper with page objects for IDE autocomplete."""
+    return Page(page)
