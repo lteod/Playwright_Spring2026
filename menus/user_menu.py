@@ -30,6 +30,10 @@ class UserMenu():
         self.link_my_account.click()
         self.page.wait_for_load_state("networkidle")
 
-    # def goto_wishlist(self):
-    #     self.link_wishlist.click()
-    #     self.page.wait_for_load_state("networkidle")
+    def goto_wishlist(self):
+        self.link_wishlist.click()
+        self.page.wait_for_load_state("networkidle")
+
+    def goto_shopping_cart(self):
+        self.link_shopping_cart.click()
+        self.page.wait_for_load_state("networkidle")
